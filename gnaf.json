@@ -1,0 +1,74 @@
+{
+    "dataset": {
+        "name": "Geoscape GNAF",
+        "filemask": "G-NAF_.*_ALL_STATES_GDA2020_PSV_.*\\.zip",
+        "release_regexp_pat": ".*_([0-9]{4}-[0-9]{2})_.*",
+        "metadata_schema": [
+            {
+                "name": "processed_at",
+                "type": "DATETIME",
+                "mode": "REQUIRED",
+                "description": "Timestamp when table is processed"
+            },
+            {
+                "name": "release",
+                "type": "STRING",
+                "mode": "REQUIRED",
+                "description": "The release date the table belongs to"
+            }
+        ],
+        "layers": [
+            {
+                "layer_name": "ADDRESS_ALIAS",
+                "driver": "psv",
+                "mask": "^.*_ADDRESS_ALIAS_psv\\.psv$",
+                "geometry": true,
+                "field_name_mapping": {},
+                "table_schema": [
+                    {
+                        "name": "address_alias_pid",
+                        "mode": "REQUIRED",
+                        "type": "STRING",
+                        "description": "The Persistent Identifier is unique to the real world feature this record represents."
+                    },
+                    {
+                        "name": "date_created",
+                        "mode": "REQUIRED",
+                        "type": "DATE",
+                        "description": "Date this record was created."
+                    },
+                    {
+                        "name": "date_retired",
+                        "mode": "",
+                        "type": "DATE",
+                        "description": "Date this record was retired."
+                    },
+                    {
+                        "name": "principal_pid",
+                        "mode": "REQUIRED",
+                        "type": "STRING",
+                        "description": "Persistent identifier (i.e. ADDRESS_DETAIL_PID) of the principal address."
+                    },
+                    {
+                        "name": "alias_pid",
+                        "mode": "REQUIRED",
+                        "type": "STRING",
+                        "description": "Persistent identifier (i.e. ADDRESS_DETAIL_PID) of the alias address."
+                    },
+                    {
+                        "name": "alias_type_code",
+                        "mode": "REQUIRED",
+                        "type": "STRING",
+                        "description": "Alias type (e.g. “Synonym”)."
+                    },
+                    {
+                        "name": "alias_comment",
+                        "mode": "",
+                        "type": "STRING",
+                        "description": "Comment about the alias (e.g. Corner address)."
+                    }
+                ]
+            }
+        ]
+    }
+}
